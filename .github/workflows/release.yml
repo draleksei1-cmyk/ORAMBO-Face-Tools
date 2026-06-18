@@ -1,0 +1,56 @@
+name: Release ORAMBO Face Tools
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Ruby 2.7
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '2.7'
+
+      - name: Install test dependency
+        run: gem install minitest -v 5.13.0 --no-document
+
+      - name: Run unit tests
+        shell: pwsh
+        run: ruby -Itest -e "Dir['test/*_test.rb'].sort.each { |f| require File.expand_path(f) }"
+
+      - name: Check Ruby syntax
+        shell: pwsh
+        run: |
+          Get-ChildItem -Recurse -Filter *.rb | ForEach-Object {
+            ruby -c $_.FullName
+            if ($LASTEXITCODE -ne 0) { throw "Syntax failed: $($_.FullName)" }
+          }
+
+      - name: Build release artifacts
+        shell: pwsh
+        run: |
+          $version = '${{ github.ref_name }}'.TrimStart('v')
+          ./scripts/build_rbz.ps1 -Version $version
+          ./scripts/generate_update_manifest.ps1 -Version $version -Tag '${{ github.ref_name }}'
+          ./scripts/verify_update_manifest.ps1 -Version $version -Tag '${{ github.ref_name }}'
+
+      - name: Publish GitHub Release
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          $version = '${{ github.ref_name }}'.TrimStart('v')
+          gh release create '${{ github.ref_name }}' `
+            "dist/ORAMBO_Face_Tools_$version.rbz" `
+            'dist/update_manifest.json' `
+            --title "ORAMBO Face Tools $version" `
+            --generate-notes
