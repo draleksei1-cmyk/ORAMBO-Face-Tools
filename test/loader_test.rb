@@ -56,11 +56,16 @@ module UI
   end
 
   class << self
-    attr_accessor :extensions_menu
+    attr_accessor :extensions_menu, :timers
   end
 
   def self.menu(_name)
     self.extensions_menu ||= Menu.new
+  end
+
+  def self.start_timer(interval, repeat, &block)
+    self.timers ||= []
+    self.timers << [interval, repeat, block]
   end
 end
 
@@ -80,10 +85,22 @@ class LoaderTest < Minitest::Test
   end
 
   def test_toolbar_has_three_commands_without_icons
+    ORAMBO::FaceTools.const_set(:EXTENSION_NAME, 'ORAMBO Face Tools') unless ORAMBO::FaceTools.const_defined?(:EXTENSION_NAME)
     load File.join(ROOT, 'orambo_face_tools', 'toolbar.rb')
     ORAMBO::FaceTools::Toolbar.instance_variable_set(:@registered, false)
     toolbar = ORAMBO::FaceTools::Toolbar.register
     assert_equal ['Break To Segments', 'Flatten Edges To Z', 'Make Faces'], toolbar.items.map(&:name)
-    assert_equal toolbar.items.map(&:name), UI.extensions_menu.items.map(&:name)
+    assert_equal ['Break To Segments', 'Flatten Edges To Z', 'Make Faces', 'Check for Updates'],
+                 UI.extensions_menu.items.map(&:name)
+  end
+
+  def test_updater_schedules_one_delayed_non_repeating_check
+    require_relative '../src/orambo_face_tools/updater'
+    UI.timers = []
+    ORAMBO::FaceTools::Updater.instance_variable_set(:@auto_check_scheduled, false)
+    ORAMBO::FaceTools::Updater.schedule_auto_check
+    ORAMBO::FaceTools::Updater.schedule_auto_check
+    assert_equal 1, UI.timers.length
+    assert_equal [5.0, false], UI.timers.first.first(2)
   end
 end

@@ -1,0 +1,92 @@
+{
+    "schema":  1,
+    "version":  "0.1.0",
+    "restart_required":  false,
+    "files":  [
+                  {
+                      "path":  "orambo_face_tools.rb",
+                      "url":  "https://raw.githubusercontent.com/draleksei1-cmyk/ORAMBO-Face-Tools/v0.1.0/src/orambo_face_tools.rb",
+                      "sha256":  "851adebb3b599b25cca0cb32ff0dbd2b41438f04abbef0bff5369589dd043569"
+                  },
+                  {
+                      "path":  "orambo_face_tools/break_to_segments.rb",
+                      "url":  "https://raw.githubusercontent.com/draleksei1-cmyk/ORAMBO-Face-Tools/v0.1.0/src/orambo_face_tools/break_to_segments.rb",
+                      "sha256":  "df1a0abd225c39d51948633b0bc44221586ee68c5284704ff7a374b294b888e6"
+                  },
+                  {
+                      "path":  "orambo_face_tools/flatten_edges_to_z.rb",
+                      "url":  "https://raw.githubusercontent.com/draleksei1-cmyk/ORAMBO-Face-Tools/v0.1.0/src/orambo_face_tools/flatten_edges_to_z.rb",
+                      "sha256":  "f89caed21b526766b949e00d7517289fbde63244a2ade42ec23880f93b851b84"
+                  },
+                  {
+                      "path":  "orambo_face_tools/icons/break_segments_16.png",
+                      "url":  "https://raw.githubusercontent.com/draleksei1-cmyk/ORAMBO-Face-Tools/v0.1.0/src/orambo_face_tools/icons/break_segments_16.png",
+                      "sha256":  "743698f82b464d22b9c004ba9d9c3c347124c6a44822b4a5d3b37b10153b9e2d"
+                  },
+                  {
+                      "path":  "orambo_face_tools/icons/break_segments_24.png",
+                      "url":  "https://raw.githubusercontent.com/draleksei1-cmyk/ORAMBO-Face-Tools/v0.1.0/src/orambo_face_tools/icons/break_segments_24.png",
+                      "sha256":  "67e58b4cd48a46dae9b0e6b555b62bbda591e68ed32fb2b0cd3d19670503d5eb"
+                  },
+                  {
+                      "path":  "orambo_face_tools/icons/flatten_edges_16.png",
+                      "url":  "https://raw.githubusercontent.com/draleksei1-cmyk/ORAMBO-Face-Tools/v0.1.0/src/orambo_face_tools/icons/flatten_edges_16.png",
+                      "sha256":  "a396620bae56a651af8a7941a49a15eae0020f2f4192354ea20aced299e09981"
+                  },
+                  {
+                      "path":  "orambo_face_tools/icons/flatten_edges_24.png",
+                      "url":  "https://raw.githubusercontent.com/draleksei1-cmyk/ORAMBO-Face-Tools/v0.1.0/src/orambo_face_tools/icons/flatten_edges_24.png",
+                      "sha256":  "2411be28c62be883aa7395fe973ca12fd438718e81060fbed23a8e98bb9ac6b7"
+                  },
+                  {
+                      "path":  "orambo_face_tools/icons/make_faces_16.png",
+                      "url":  "https://raw.githubusercontent.com/draleksei1-cmyk/ORAMBO-Face-Tools/v0.1.0/src/orambo_face_tools/icons/make_faces_16.png",
+                      "sha256":  "c1e4ffc5eeee7aeb75b91ccb0df530a42071449caa7e1a7b05bbf09aa0c7d9ec"
+                  },
+                  {
+                      "path":  "orambo_face_tools/icons/make_faces_24.png",
+                      "url":  "https://raw.githubusercontent.com/draleksei1-cmyk/ORAMBO-Face-Tools/v0.1.0/src/orambo_face_tools/icons/make_faces_24.png",
+                      "sha256":  "6c01c03cbd40de2840019d79f4e97ffa16e1e3fbb3103d767135fa3808b2e6e5"
+                  },
+                  {
+                      "path":  "orambo_face_tools/main.rb",
+                      "url":  "https://raw.githubusercontent.com/draleksei1-cmyk/ORAMBO-Face-Tools/v0.1.0/src/orambo_face_tools/main.rb",
+                      "sha256":  "39e90cfa98dc906a85da40cc947da35ca9bed1f7f59b37d11a088c12e2842fec"
+                  },
+                  {
+                      "path":  "orambo_face_tools/make_faces.rb",
+                      "url":  "https://raw.githubusercontent.com/draleksei1-cmyk/ORAMBO-Face-Tools/v0.1.0/src/orambo_face_tools/make_faces.rb",
+                      "sha256":  "925d169922ecf625e48b18fed99dafbe483811a1cf8e71b80585f8b0cb5a5044"
+                  },
+                  {
+                      "path":  "orambo_face_tools/progress.rb",
+                      "url":  "https://raw.githubusercontent.com/draleksei1-cmyk/ORAMBO-Face-Tools/v0.1.0/src/orambo_face_tools/progress.rb",
+                      "sha256":  "d7a07b12017f66f185764caa7a97a89f16d228643afa67b594a7430f5d6f3f6d"
+                  },
+                  {
+                      "path":  "orambo_face_tools/report.rb",
+                      "url":  "https://raw.githubusercontent.com/draleksei1-cmyk/ORAMBO-Face-Tools/v0.1.0/src/orambo_face_tools/report.rb",
+                      "sha256":  "84644307323900085a43b5aef4fe4e2c88e81ce8b86775440cafd3da3460ccbb"
+                  },
+                  {
+                      "path":  "orambo_face_tools/safety.rb",
+                      "url":  "https://raw.githubusercontent.com/draleksei1-cmyk/ORAMBO-Face-Tools/v0.1.0/src/orambo_face_tools/safety.rb",
+                      "sha256":  "d387c208921b09a6da151ce5d36df6be5e6ba95f2b226ddb455b4ca268d1c4f2"
+                  },
+                  {
+                      "path":  "orambo_face_tools/toolbar.rb",
+                      "url":  "https://raw.githubusercontent.com/draleksei1-cmyk/ORAMBO-Face-Tools/v0.1.0/src/orambo_face_tools/toolbar.rb",
+                      "sha256":  "e90e3925cddec61115f020282c7bdb630e5bb46700f8191a7089d4e679170d7e"
+                  },
+                  {
+                      "path":  "orambo_face_tools/updater.rb",
+                      "url":  "https://raw.githubusercontent.com/draleksei1-cmyk/ORAMBO-Face-Tools/v0.1.0/src/orambo_face_tools/updater.rb",
+                      "sha256":  "945cb63837ac298f35e7fd3e524548189636e8051ccf48dd1538b0a8c73629cb"
+                  },
+                  {
+                      "path":  "orambo_face_tools/utils.rb",
+                      "url":  "https://raw.githubusercontent.com/draleksei1-cmyk/ORAMBO-Face-Tools/v0.1.0/src/orambo_face_tools/utils.rb",
+                      "sha256":  "1139ac0a285d30897df80fd7e7bb34a059a017fb60ba7384650fea62869a3cc2"
+                  }
+              ]
+}

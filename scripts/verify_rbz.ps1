@@ -20,6 +20,7 @@ try {
         'orambo_face_tools/safety.rb',
         'orambo_face_tools/progress.rb',
         'orambo_face_tools/report.rb',
+        'orambo_face_tools/updater.rb',
         'orambo_face_tools/break_to_segments.rb',
         'orambo_face_tools/flatten_edges_to_z.rb',
         'orambo_face_tools/make_faces.rb',

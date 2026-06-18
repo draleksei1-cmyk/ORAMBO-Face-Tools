@@ -24,6 +24,10 @@ module ORAMBO
           menu.add_item(command)
           @toolbar.add_item(command)
         end
+        update_command = UI::Command.new('Check for Updates') { Updater.check_for_updates(manual: true) }
+        update_command.tooltip = 'Check for Updates'
+        update_command.status_bar_text = 'Проверить обновления ORAMBO Face Tools на GitHub'
+        menu.add_item(update_command)
         @toolbar.show
         @toolbar
       end

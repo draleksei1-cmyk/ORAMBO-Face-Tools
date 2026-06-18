@@ -1,12 +1,13 @@
 param(
-    [switch]$VerifyOnly
+    [switch]$VerifyOnly,
+    [string]$Version = '0.1.0'
 )
 
 $ErrorActionPreference = 'Stop'
 $root = [System.IO.Path]::GetFullPath((Join-Path $PSScriptRoot '..'))
 $source = Join-Path $root 'src'
 $dist = Join-Path $root 'dist'
-$output = Join-Path $dist 'ORAMBO_Face_Tools_0.1.0.rbz'
+$output = Join-Path $dist "ORAMBO_Face_Tools_$Version.rbz"
 
 if ($VerifyOnly) {
     & (Join-Path $PSScriptRoot 'verify_rbz.ps1') -Path $output

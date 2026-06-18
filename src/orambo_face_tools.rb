@@ -15,4 +15,5 @@ extension = SketchupExtension.new(ORAMBO::FaceTools::EXTENSION_NAME, loader)
 extension.description = 'DWG cleanup tools: Break To Segments, Flatten Edges To Z, Make Faces.'
 extension.version = ORAMBO::FaceTools::EXTENSION_VERSION
 extension.creator = 'ORAMBO'
+ORAMBO::FaceTools.const_set(:EXTENSION, extension) unless ORAMBO::FaceTools.const_defined?(:EXTENSION)
 Sketchup.register_extension(extension, true)
