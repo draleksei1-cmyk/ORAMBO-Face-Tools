@@ -1,5 +1,5 @@
 param(
-    [string]$Version = '0.1.0',
+    [string]$Version = '0.1.1',
     [string]$Tag = "v$Version",
     [string]$Path = (Join-Path $PSScriptRoot '..\dist\update_manifest.json')
 )

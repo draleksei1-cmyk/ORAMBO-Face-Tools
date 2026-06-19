@@ -3,7 +3,7 @@
 module ORAMBO
   module FaceTools
     EXTENSION_NAME = 'ORAMBO Face Tools' unless const_defined?(:EXTENSION_NAME)
-    EXTENSION_VERSION = '0.1.0' unless const_defined?(:EXTENSION_VERSION)
+    EXTENSION_VERSION = '0.1.1' unless const_defined?(:EXTENSION_VERSION)
     MAX_WARNINGS_SHOWN = 30 unless const_defined?(:MAX_WARNINGS_SHOWN)
     MAX_EDGES_NORMAL = 50_000 unless const_defined?(:MAX_EDGES_NORMAL)
     MAX_EDGES_HARD = 100_000 unless const_defined?(:MAX_EDGES_HARD)
