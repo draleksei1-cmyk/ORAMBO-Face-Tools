@@ -5,6 +5,7 @@ require_relative 'utils'
 module ORAMBO
   module FaceTools
     module BreakToSegments
+      DEFAULT_CONVERT_CURVES = true
       module_function
 
       def duplicate_indexes(edge_points, tolerance)
@@ -24,7 +25,8 @@ module ORAMBO
         return unless Safety.valid_selection(model) && Safety.confirm_large_selection(model.selection)
         warning = "Операция разрушительная.\n\nОна может взорвать группы, компоненты, дуги и кривые до простых отрезков.\n\nЛучше сохранить копию файла перед запуском.\n\nПродолжить?"
         return unless UI.messagebox(warning, MB_YESNO) == IDYES
-        defaults = [true, true, true, false, false, ORAMBO::FaceTools::DUPLICATE_EDGE_TOLERANCE_MM.mm, false]
+        defaults = [true, true, true, DEFAULT_CONVERT_CURVES, false,
+                    ORAMBO::FaceTools::DUPLICATE_EDGE_TOLERANCE_MM.mm, false]
         prompts = ['Несколько объектов собрать в группу:', 'Взрывать вложенные группы:',
                    'Взрывать вложенные компоненты:', 'Кривые и дуги перевести в отрезки:',
                    'Удалить дублирующиеся отрезки:', 'Tolerance для дублей:', 'Обрабатывать скрытую геометрию:']

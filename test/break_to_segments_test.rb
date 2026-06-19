@@ -19,4 +19,8 @@ class BreakToSegmentsTest < Minitest::Test
     assert_equal 8, B.bounded_passes(20, 8)
     assert_equal 3, B.bounded_passes(3, 8)
   end
+
+  def test_curve_conversion_is_enabled_by_default
+    assert_equal true, B::DEFAULT_CONVERT_CURVES
+  end
 end
