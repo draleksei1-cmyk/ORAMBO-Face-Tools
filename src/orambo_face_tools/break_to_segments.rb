@@ -144,18 +144,12 @@ module ORAMBO
         curves = source.map(&:curve).compact.uniq
         curves.reject! { |curve| curve.edges.any?(&:hidden?) } unless include_hidden
         curves.each do |curve|
-          old_edges = curve.edges.to_a
-          snapshots = old_edges.map do |edge|
-            { start: edge.start.position, end: edge.end.position, layer: edge.layer, material: edge.material,
-              hidden: edge.hidden?, soft: edge.soft?, smooth: edge.smooth? }
-          end
-          old_edges.each { |edge| edge.erase! if edge.valid? }
-          snapshots.each do |data|
-            edge = entities.add_line(data[:start], data[:end])
-            next unless edge
-            edge.layer, edge.material, edge.hidden = data[:layer], data[:material], data[:hidden]
-            edge.soft, edge.smooth = data[:soft], data[:smooth]
-          end
+          edge = curve.edges.find(&:valid?)
+          next unless edge
+
+          exploded = edge.explode_curve
+          raise 'SketchUp не разорвал связь Curve/Arc.' unless exploded
+
           report.increment(:curves_converted)
         rescue StandardError => error
           report.warn("Кривая не преобразована: #{error.message}")
