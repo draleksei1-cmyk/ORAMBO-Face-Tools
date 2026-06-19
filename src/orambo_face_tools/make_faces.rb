@@ -105,8 +105,20 @@ module ORAMBO
         Utils.z_spread_values(world_z)[:spread]
       end
 
+      def intersect_edges(entities, edges, report, identity = nil)
+        identity ||= Geom::Transformation.new
+        entities.intersect_with(false, identity, entities, identity, false, edges)
+        entities.grep(Sketchup::Edge).select(&:valid?)
+      rescue StandardError => error
+        report.warn("Пересечения пропущены: #{error.message}")
+        entities.grep(Sketchup::Edge).select(&:valid?)
+      end
+
       def process_context(model, context, gap, max_closers, intersect, orientation, orient_existing, report)
+        entities = context[:entities]
         edges = context[:edges].select(&:valid?)
+        faces_before = entities.grep(Sketchup::Face).select(&:valid?).map(&:object_id)
+        edges = intersect_edges(entities, edges, report) if intersect && edges.length > 1
         degree = Hash.new(0)
         edges.each { |edge| edge.vertices.each { |vertex| degree[vertex] += 1 } }
         open_vertices = degree.select { |_, value| value == 1 }.keys
@@ -123,7 +135,7 @@ module ORAMBO
         remaining = [open_vertices.length - pairs.length * 2, 0].max
         tag = model.layers[GAP_TAG] || model.layers.add(GAP_TAG)
         closing_edges = pairs.filter_map do |left, right|
-          edge = context[:entities].add_line(local_points[left], local_points[right])
+          edge = entities.add_line(local_points[left], local_points[right])
           edge.layer = tag if edge
           edge
         rescue StandardError => error
@@ -136,20 +148,15 @@ module ORAMBO
         if pairs.length >= max_closers && remaining.positive?
           report.warn("Достигнут лимит замыкающих линий. Создано: #{pairs.length}. Осталось свободных концов: #{remaining}.")
         end
-        if intersect && edges.any?
-          identity = Geom::Transformation.new
-          context[:entities].intersect_with(false, identity, context[:entities], identity, true, edges)
-          edges = context[:entities].grep(Sketchup::Edge)
-        end
-        faces_before = context[:entities].grep(Sketchup::Face).map(&:object_id)
-        (edges + closing_edges).each do |edge|
+        edges = entities.grep(Sketchup::Edge).select(&:valid?)
+        (edges + closing_edges).uniq.each do |edge|
           Progress.tick if defined?(Progress)
           edge.find_faces if edge && edge.valid?
         rescue StandardError => error
           report.warn("Ребро не обработано find_faces: #{error.message}")
         end
-        new_faces = context[:entities].grep(Sketchup::Face).reject { |face| faces_before.include?(face.object_id) }
-        faces_to_orient = orient_existing ? context[:entities].grep(Sketchup::Face) : new_faces
+        new_faces = entities.grep(Sketchup::Face).select(&:valid?).reject { |face| faces_before.include?(face.object_id) }
+        faces_to_orient = orient_existing ? entities.grep(Sketchup::Face).select(&:valid?) : new_faces
         faces_to_orient.each { |face| orient_face(model, face, context[:transform], orientation, report) } unless orientation == 'Не трогать'
         report.increment(:faces_created, new_faces.length)
         if new_faces.empty?
