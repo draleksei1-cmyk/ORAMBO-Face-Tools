@@ -78,7 +78,7 @@ class LoaderTest < Minitest::Test
     extension, enabled = Sketchup.registered_extension
     assert enabled
     assert_equal 'ORAMBO Face Tools', extension.name
-    assert_equal '0.1.1', extension.version
+    assert_equal '0.1.2', extension.version
     assert_equal 'ORAMBO', extension.creator
   ensure
     $LOAD_PATH.shift

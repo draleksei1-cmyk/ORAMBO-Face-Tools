@@ -60,7 +60,7 @@ class UpdaterTest < Minitest::Test
   def test_manifest_validation_requires_https_and_sha256
     manifest = manifest_for('orambo_face_tools/updater.rb', 'https://example/updater.rb', 'a' * 64)
     validated = U.validate_manifest(JSON.generate(manifest))
-    assert_equal '0.1.1', validated.fetch('version')
+    assert_equal '0.1.2', validated.fetch('version')
 
     manifest['files'][0]['url'] = 'http://example/updater.rb'
     assert_raises(ArgumentError) { U.validate_manifest(JSON.generate(manifest)) }
@@ -147,7 +147,7 @@ class UpdaterTest < Minitest::Test
   def manifest_for(path, url, sha)
     {
       'schema' => 1,
-      'version' => '0.1.1',
+      'version' => '0.1.2',
       'restart_required' => false,
       'files' => [{ 'path' => path, 'url' => url, 'sha256' => sha }]
     }

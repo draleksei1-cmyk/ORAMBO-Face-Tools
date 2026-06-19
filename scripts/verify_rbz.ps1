@@ -1,5 +1,5 @@
 param(
-    [string]$Path = (Join-Path $PSScriptRoot '..\dist\ORAMBO_Face_Tools_0.1.1.rbz')
+    [string]$Path = (Join-Path $PSScriptRoot '..\dist\ORAMBO_Face_Tools_0.1.2.rbz')
 )
 
 $ErrorActionPreference = 'Stop'

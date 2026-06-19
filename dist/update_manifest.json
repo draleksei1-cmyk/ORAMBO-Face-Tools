@@ -1,91 +1,116 @@
 {
     "schema":  1,
-    "version":  "0.1.1",
+    "version":  "0.1.2",
     "restart_required":  false,
     "files":  [
                   {
                       "path":  "orambo_face_tools.rb",
-                      "url":  "https://raw.githubusercontent.com/draleksei1-cmyk/ORAMBO-Face-Tools/v0.1.1/src/orambo_face_tools.rb",
-                      "sha256":  "4cf1f4ee6dfdf26b2f6709aea05b15ef1025f4dbce2a2c1de775ee951540b8af"
+                      "url":  "https://raw.githubusercontent.com/draleksei1-cmyk/ORAMBO-Face-Tools/v0.1.2/src/orambo_face_tools.rb",
+                      "sha256":  "454288e3837736f5c6c1334d9b5b777ff1357ad3359c65e37b2b47ca2909ad01"
                   },
                   {
                       "path":  "orambo_face_tools/break_to_segments.rb",
-                      "url":  "https://raw.githubusercontent.com/draleksei1-cmyk/ORAMBO-Face-Tools/v0.1.1/src/orambo_face_tools/break_to_segments.rb",
-                      "sha256":  "136ece7b8ff143612760cd0a0c04f6ba3457a7dc292ac2834bd0af52b40c6c36"
+                      "url":  "https://raw.githubusercontent.com/draleksei1-cmyk/ORAMBO-Face-Tools/v0.1.2/src/orambo_face_tools/break_to_segments.rb",
+                      "sha256":  "574e739740d63fdcc50cc7d4290f3e65f3ba57bb78d0e1d06658e3ea7d268688"
+                  },
+                  {
+                      "path":  "orambo_face_tools/diagnostics.rb",
+                      "url":  "https://raw.githubusercontent.com/draleksei1-cmyk/ORAMBO-Face-Tools/v0.1.2/src/orambo_face_tools/diagnostics.rb",
+                      "sha256":  "c2a6d19b51aeb69ae8b8e3c54a2b2a3fa361f439039805ca5d92affa07f0ff01"
                   },
                   {
                       "path":  "orambo_face_tools/flatten_edges_to_z.rb",
-                      "url":  "https://raw.githubusercontent.com/draleksei1-cmyk/ORAMBO-Face-Tools/v0.1.1/src/orambo_face_tools/flatten_edges_to_z.rb",
+                      "url":  "https://raw.githubusercontent.com/draleksei1-cmyk/ORAMBO-Face-Tools/v0.1.2/src/orambo_face_tools/flatten_edges_to_z.rb",
                       "sha256":  "c011e439c9b72b62c704a36a2c500a68c3ce633a3749379e7ac6c58bd6285cbb"
                   },
                   {
                       "path":  "orambo_face_tools/icons/break_segments_16.png",
-                      "url":  "https://raw.githubusercontent.com/draleksei1-cmyk/ORAMBO-Face-Tools/v0.1.1/src/orambo_face_tools/icons/break_segments_16.png",
+                      "url":  "https://raw.githubusercontent.com/draleksei1-cmyk/ORAMBO-Face-Tools/v0.1.2/src/orambo_face_tools/icons/break_segments_16.png",
                       "sha256":  "743698f82b464d22b9c004ba9d9c3c347124c6a44822b4a5d3b37b10153b9e2d"
                   },
                   {
                       "path":  "orambo_face_tools/icons/break_segments_24.png",
-                      "url":  "https://raw.githubusercontent.com/draleksei1-cmyk/ORAMBO-Face-Tools/v0.1.1/src/orambo_face_tools/icons/break_segments_24.png",
+                      "url":  "https://raw.githubusercontent.com/draleksei1-cmyk/ORAMBO-Face-Tools/v0.1.2/src/orambo_face_tools/icons/break_segments_24.png",
                       "sha256":  "67e58b4cd48a46dae9b0e6b555b62bbda591e68ed32fb2b0cd3d19670503d5eb"
                   },
                   {
                       "path":  "orambo_face_tools/icons/flatten_edges_16.png",
-                      "url":  "https://raw.githubusercontent.com/draleksei1-cmyk/ORAMBO-Face-Tools/v0.1.1/src/orambo_face_tools/icons/flatten_edges_16.png",
+                      "url":  "https://raw.githubusercontent.com/draleksei1-cmyk/ORAMBO-Face-Tools/v0.1.2/src/orambo_face_tools/icons/flatten_edges_16.png",
                       "sha256":  "a396620bae56a651af8a7941a49a15eae0020f2f4192354ea20aced299e09981"
                   },
                   {
                       "path":  "orambo_face_tools/icons/flatten_edges_24.png",
-                      "url":  "https://raw.githubusercontent.com/draleksei1-cmyk/ORAMBO-Face-Tools/v0.1.1/src/orambo_face_tools/icons/flatten_edges_24.png",
+                      "url":  "https://raw.githubusercontent.com/draleksei1-cmyk/ORAMBO-Face-Tools/v0.1.2/src/orambo_face_tools/icons/flatten_edges_24.png",
                       "sha256":  "2411be28c62be883aa7395fe973ca12fd438718e81060fbed23a8e98bb9ac6b7"
                   },
                   {
+                      "path":  "orambo_face_tools/icons/highlight_gaps_16.png",
+                      "url":  "https://raw.githubusercontent.com/draleksei1-cmyk/ORAMBO-Face-Tools/v0.1.2/src/orambo_face_tools/icons/highlight_gaps_16.png",
+                      "sha256":  "77134c22448079fc91d510f29af3a61c832f2176974d47d59f86da575b7b3642"
+                  },
+                  {
+                      "path":  "orambo_face_tools/icons/highlight_gaps_24.png",
+                      "url":  "https://raw.githubusercontent.com/draleksei1-cmyk/ORAMBO-Face-Tools/v0.1.2/src/orambo_face_tools/icons/highlight_gaps_24.png",
+                      "sha256":  "c56e0fb76a6e8ad9143f8601c41d0ec32fa2f62fb762951b26055f81d3db5139"
+                  },
+                  {
                       "path":  "orambo_face_tools/icons/make_faces_16.png",
-                      "url":  "https://raw.githubusercontent.com/draleksei1-cmyk/ORAMBO-Face-Tools/v0.1.1/src/orambo_face_tools/icons/make_faces_16.png",
+                      "url":  "https://raw.githubusercontent.com/draleksei1-cmyk/ORAMBO-Face-Tools/v0.1.2/src/orambo_face_tools/icons/make_faces_16.png",
                       "sha256":  "c1e4ffc5eeee7aeb75b91ccb0df530a42071449caa7e1a7b05bbf09aa0c7d9ec"
                   },
                   {
                       "path":  "orambo_face_tools/icons/make_faces_24.png",
-                      "url":  "https://raw.githubusercontent.com/draleksei1-cmyk/ORAMBO-Face-Tools/v0.1.1/src/orambo_face_tools/icons/make_faces_24.png",
+                      "url":  "https://raw.githubusercontent.com/draleksei1-cmyk/ORAMBO-Face-Tools/v0.1.2/src/orambo_face_tools/icons/make_faces_24.png",
                       "sha256":  "6c01c03cbd40de2840019d79f4e97ffa16e1e3fbb3103d767135fa3808b2e6e5"
                   },
                   {
+                      "path":  "orambo_face_tools/icons/open_ends_16.png",
+                      "url":  "https://raw.githubusercontent.com/draleksei1-cmyk/ORAMBO-Face-Tools/v0.1.2/src/orambo_face_tools/icons/open_ends_16.png",
+                      "sha256":  "c9b0d355829431ef74bbf7465c48c14306f182d95c74bb36d0a637fb6cbdb068"
+                  },
+                  {
+                      "path":  "orambo_face_tools/icons/open_ends_24.png",
+                      "url":  "https://raw.githubusercontent.com/draleksei1-cmyk/ORAMBO-Face-Tools/v0.1.2/src/orambo_face_tools/icons/open_ends_24.png",
+                      "sha256":  "147cbc27205fea546e9847ca266b634abacd9f6d70d8d4f32186c3ac2377cbfc"
+                  },
+                  {
                       "path":  "orambo_face_tools/main.rb",
-                      "url":  "https://raw.githubusercontent.com/draleksei1-cmyk/ORAMBO-Face-Tools/v0.1.1/src/orambo_face_tools/main.rb",
-                      "sha256":  "11b3152eb8b2b99d096a9c3f64a7e67defaafb5b3af0ab89e7ca07efb32ffe17"
+                      "url":  "https://raw.githubusercontent.com/draleksei1-cmyk/ORAMBO-Face-Tools/v0.1.2/src/orambo_face_tools/main.rb",
+                      "sha256":  "364752b87d4cba6629cc3c3a9d9c7c554500a65e9e5310d001df322bc16afb82"
                   },
                   {
                       "path":  "orambo_face_tools/make_faces.rb",
-                      "url":  "https://raw.githubusercontent.com/draleksei1-cmyk/ORAMBO-Face-Tools/v0.1.1/src/orambo_face_tools/make_faces.rb",
+                      "url":  "https://raw.githubusercontent.com/draleksei1-cmyk/ORAMBO-Face-Tools/v0.1.2/src/orambo_face_tools/make_faces.rb",
                       "sha256":  "07519016adf69784c12c23f79197333db1bc3ddf12327655df90397c8e841d5d"
                   },
                   {
                       "path":  "orambo_face_tools/progress.rb",
-                      "url":  "https://raw.githubusercontent.com/draleksei1-cmyk/ORAMBO-Face-Tools/v0.1.1/src/orambo_face_tools/progress.rb",
+                      "url":  "https://raw.githubusercontent.com/draleksei1-cmyk/ORAMBO-Face-Tools/v0.1.2/src/orambo_face_tools/progress.rb",
                       "sha256":  "d7a07b12017f66f185764caa7a97a89f16d228643afa67b594a7430f5d6f3f6d"
                   },
                   {
                       "path":  "orambo_face_tools/report.rb",
-                      "url":  "https://raw.githubusercontent.com/draleksei1-cmyk/ORAMBO-Face-Tools/v0.1.1/src/orambo_face_tools/report.rb",
-                      "sha256":  "84644307323900085a43b5aef4fe4e2c88e81ce8b86775440cafd3da3460ccbb"
+                      "url":  "https://raw.githubusercontent.com/draleksei1-cmyk/ORAMBO-Face-Tools/v0.1.2/src/orambo_face_tools/report.rb",
+                      "sha256":  "39606a89c279afbccc83143806ddda26b8635f456dcc7b46ca6ca9ec7db53c29"
                   },
                   {
                       "path":  "orambo_face_tools/safety.rb",
-                      "url":  "https://raw.githubusercontent.com/draleksei1-cmyk/ORAMBO-Face-Tools/v0.1.1/src/orambo_face_tools/safety.rb",
+                      "url":  "https://raw.githubusercontent.com/draleksei1-cmyk/ORAMBO-Face-Tools/v0.1.2/src/orambo_face_tools/safety.rb",
                       "sha256":  "d387c208921b09a6da151ce5d36df6be5e6ba95f2b226ddb455b4ca268d1c4f2"
                   },
                   {
                       "path":  "orambo_face_tools/toolbar.rb",
-                      "url":  "https://raw.githubusercontent.com/draleksei1-cmyk/ORAMBO-Face-Tools/v0.1.1/src/orambo_face_tools/toolbar.rb",
-                      "sha256":  "e90e3925cddec61115f020282c7bdb630e5bb46700f8191a7089d4e679170d7e"
+                      "url":  "https://raw.githubusercontent.com/draleksei1-cmyk/ORAMBO-Face-Tools/v0.1.2/src/orambo_face_tools/toolbar.rb",
+                      "sha256":  "b411d56e97a7734554266b753f80cd1cbb26bbe89cbf2ea8106bb0ada0232925"
                   },
                   {
                       "path":  "orambo_face_tools/updater.rb",
-                      "url":  "https://raw.githubusercontent.com/draleksei1-cmyk/ORAMBO-Face-Tools/v0.1.1/src/orambo_face_tools/updater.rb",
-                      "sha256":  "945cb63837ac298f35e7fd3e524548189636e8051ccf48dd1538b0a8c73629cb"
+                      "url":  "https://raw.githubusercontent.com/draleksei1-cmyk/ORAMBO-Face-Tools/v0.1.2/src/orambo_face_tools/updater.rb",
+                      "sha256":  "41c784fe1ba97bd5016691a27aa70c33d783fdf4167f39986c3873f35d8a33da"
                   },
                   {
                       "path":  "orambo_face_tools/utils.rb",
-                      "url":  "https://raw.githubusercontent.com/draleksei1-cmyk/ORAMBO-Face-Tools/v0.1.1/src/orambo_face_tools/utils.rb",
+                      "url":  "https://raw.githubusercontent.com/draleksei1-cmyk/ORAMBO-Face-Tools/v0.1.2/src/orambo_face_tools/utils.rb",
                       "sha256":  "d55a691c6da492ddef6d8952371b2f507edba31fdc19c2a6e3380b290f23c163"
                   }
               ]
