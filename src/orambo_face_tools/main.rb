@@ -20,7 +20,7 @@ end
 
 if defined?(Sketchup)
   base = __dir__
-  %w[utils report progress safety flatten_edges_to_z make_faces break_to_segments updater toolbar].each do |file|
+  %w[utils report progress safety flatten_edges_to_z make_faces break_to_segments diagnostics updater toolbar].each do |file|
     require File.join(base, file)
   end
   ORAMBO::FaceTools::Toolbar.register

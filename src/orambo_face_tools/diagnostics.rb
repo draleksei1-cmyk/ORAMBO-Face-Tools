@@ -192,6 +192,34 @@ module ORAMBO
       rescue StandardError
         nil
       end
+
+      def register_hot_commands
+        return false unless defined?(ORAMBO::FaceTools::Toolbar)
+        return true if @hot_commands_registered
+
+        toolbar = ORAMBO::FaceTools::Toolbar.instance_variable_get(:@toolbar)
+        return false unless toolbar
+
+        definitions = [
+          ['Select Open Ends', 'open_ends', 'Показать свободные концы красными крестиками', -> { run_open_ends }],
+          ['Highlight Gaps', 'highlight_gaps', 'Показать ближайшие разрывы между контурами', -> { run_highlight_gaps }]
+        ]
+        definitions.each do |label, icon_name, help, action|
+          command = UI::Command.new(label, &action)
+          command.tooltip = label
+          command.status_bar_text = help
+          icon_dir = File.join(__dir__, 'icons')
+          small = File.join(icon_dir, "#{icon_name}_16.png")
+          large = File.join(icon_dir, "#{icon_name}_24.png")
+          command.small_icon = small if File.file?(small)
+          command.large_icon = large if File.file?(large)
+          toolbar.add_item(command)
+        end
+        toolbar.show
+        @hot_commands_registered = true
+      end
     end
   end
 end
+
+ORAMBO::FaceTools::Diagnostics.register_hot_commands if defined?(Sketchup) && defined?(ORAMBO::FaceTools::Toolbar)

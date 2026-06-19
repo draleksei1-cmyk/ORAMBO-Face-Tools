@@ -138,7 +138,7 @@ module ORAMBO
           priority = case basename
                      when 'utils.rb' then 0
                      when 'report.rb', 'progress.rb', 'safety.rb' then 1
-                     when 'break_to_segments.rb', 'flatten_edges_to_z.rb', 'make_faces.rb' then 2
+                     when 'break_to_segments.rb', 'flatten_edges_to_z.rb', 'make_faces.rb', 'diagnostics.rb' then 2
                      when 'updater.rb' then 9
                      else 5
                      end

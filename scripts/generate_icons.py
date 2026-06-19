@@ -63,13 +63,38 @@ def face_icon(size):
     return image
 
 
+def open_ends_icon(size):
+    image, draw, s = canvas(size)
+    k = size / 24
+    line(draw, [(3*k, 17*k), (9*k, 11*k)], INK, 2, s)
+    line(draw, [(15*k, 11*k), (21*k, 5*k)], INK, 2, s)
+    dot(draw, 9*k, 11*k, 1.8*k, BLUE, s)
+    dot(draw, 15*k, 11*k, 1.8*k, BLUE, s)
+    return image
+
+
+def highlight_gaps_icon(size):
+    image, draw, s = canvas(size)
+    k = size / 24
+    line(draw, [(3*k, 17*k), (8*k, 12*k)], INK, 2, s)
+    line(draw, [(16*k, 12*k), (21*k, 7*k)], INK, 2, s)
+    dot(draw, 8*k, 12*k, 1.6*k, BLUE, s)
+    dot(draw, 16*k, 12*k, 1.6*k, BLUE, s)
+    line(draw, [(10*k, 12*k), (11.5*k, 12*k)], BLUE, 1, s)
+    line(draw, [(12.5*k, 12*k), (14*k, 12*k)], BLUE, 1, s)
+    return image
+
+
 for size in (16, 24):
     save(break_icon(size), "break_segments", size)
     save(flatten_icon(size), "flatten_edges", size)
     save(face_icon(size), "make_faces", size)
+    save(open_ends_icon(size), "open_ends", size)
+    save(highlight_gaps_icon(size), "highlight_gaps", size)
 
 sheet = Image.new("RGBA", (360, 128), (245, 247, 250, 255))
-for index, name in enumerate(("break_segments", "flatten_edges", "make_faces")):
-    icon = Image.open(OUT / f"{name}_24.png").resize((96, 96), Image.Resampling.NEAREST)
-    sheet.alpha_composite(icon, (16 + index * 120, 16))
+for index, name in enumerate(("break_segments", "flatten_edges", "make_faces", "open_ends", "highlight_gaps")):
+    icon = Image.open(OUT / f"{name}_24.png").resize((64, 64), Image.Resampling.NEAREST)
+    sheet.alpha_composite(icon, (8 + index * 70, 32))
+(ROOT / "tmp").mkdir(parents=True, exist_ok=True)
 sheet.save(ROOT / "tmp" / "icons_contact_sheet.png")

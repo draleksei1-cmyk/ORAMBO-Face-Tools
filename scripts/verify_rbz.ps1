@@ -24,12 +24,17 @@ try {
         'orambo_face_tools/break_to_segments.rb',
         'orambo_face_tools/flatten_edges_to_z.rb',
         'orambo_face_tools/make_faces.rb',
+        'orambo_face_tools/diagnostics.rb',
         'orambo_face_tools/icons/break_segments_16.png',
         'orambo_face_tools/icons/break_segments_24.png',
         'orambo_face_tools/icons/flatten_edges_16.png',
         'orambo_face_tools/icons/flatten_edges_24.png',
         'orambo_face_tools/icons/make_faces_16.png',
-        'orambo_face_tools/icons/make_faces_24.png'
+        'orambo_face_tools/icons/make_faces_24.png',
+        'orambo_face_tools/icons/open_ends_16.png',
+        'orambo_face_tools/icons/open_ends_24.png',
+        'orambo_face_tools/icons/highlight_gaps_16.png',
+        'orambo_face_tools/icons/highlight_gaps_24.png'
     )
     $missing = @($required | Where-Object { $_ -notin $names })
     if ($missing.Count -gt 0) {

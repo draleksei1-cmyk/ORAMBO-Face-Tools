@@ -5,10 +5,13 @@ module ORAMBO
     module Toolbar
       module_function
 
+      remove_const(:COMMANDS) if const_defined?(:COMMANDS, false)
       COMMANDS = [
         ['Break To Segments', 'break_segments', 'Разбить и подготовить сложную DWG-геометрию', -> { BreakToSegments.run }],
         ['Flatten Edges To Z', 'flatten_edges', 'Положить вершины рёбер в мировую Z-плоскость', -> { FlattenEdgesToZ.run }],
-        ['Make Faces', 'make_faces', 'Создать грани по замкнутым контурам', -> { MakeFaces.run }]
+        ['Make Faces', 'make_faces', 'Создать грани по замкнутым контурам', -> { MakeFaces.run }],
+        ['Select Open Ends', 'open_ends', 'Показать свободные концы красными крестиками', -> { Diagnostics.run_open_ends }],
+        ['Highlight Gaps', 'highlight_gaps', 'Показать ближайшие разрывы между контурами', -> { Diagnostics.run_highlight_gaps }]
       ].freeze
 
       def register
@@ -17,10 +20,7 @@ module ORAMBO
         menu = UI.menu('Extensions').add_submenu(FaceTools::EXTENSION_NAME)
         @toolbar = UI::Toolbar.new(FaceTools::EXTENSION_NAME)
         COMMANDS.each do |label, icon_name, help, action|
-          command = UI::Command.new(label, &action)
-          command.tooltip = label
-          command.status_bar_text = help
-          set_icons(command, icon_name)
+          command = build_command(label, icon_name, help, action)
           menu.add_item(command)
           @toolbar.add_item(command)
         end
@@ -30,6 +30,14 @@ module ORAMBO
         menu.add_item(update_command)
         @toolbar.show
         @toolbar
+      end
+
+      def build_command(label, icon_name, help, action)
+        command = UI::Command.new(label, &action)
+        command.tooltip = label
+        command.status_bar_text = help
+        set_icons(command, icon_name)
+        command
       end
 
       def set_icons(command, name)

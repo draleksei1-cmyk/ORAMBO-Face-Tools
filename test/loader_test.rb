@@ -84,14 +84,34 @@ class LoaderTest < Minitest::Test
     $LOAD_PATH.shift
   end
 
-  def test_toolbar_has_three_commands_without_icons
+  def test_toolbar_has_five_commands_without_icons
     ORAMBO::FaceTools.const_set(:EXTENSION_NAME, 'ORAMBO Face Tools') unless ORAMBO::FaceTools.const_defined?(:EXTENSION_NAME)
+    require_relative '../src/orambo_face_tools/diagnostics'
     load File.join(ROOT, 'orambo_face_tools', 'toolbar.rb')
+    UI.extensions_menu = UI::Menu.new
     ORAMBO::FaceTools::Toolbar.instance_variable_set(:@registered, false)
     toolbar = ORAMBO::FaceTools::Toolbar.register
-    assert_equal ['Break To Segments', 'Flatten Edges To Z', 'Make Faces'], toolbar.items.map(&:name)
-    assert_equal ['Break To Segments', 'Flatten Edges To Z', 'Make Faces', 'Check for Updates'],
+    expected = ['Break To Segments', 'Flatten Edges To Z', 'Make Faces', 'Select Open Ends', 'Highlight Gaps']
+    assert_equal expected, toolbar.items.map(&:name)
+    assert_equal expected + ['Check for Updates'],
                  UI.extensions_menu.items.map(&:name)
+  end
+
+  def test_hot_registration_adds_diagnostics_once
+    require_relative '../src/orambo_face_tools/diagnostics'
+    load File.join(ROOT, 'orambo_face_tools', 'toolbar.rb')
+    toolbar = UI::Toolbar.new('ORAMBO Face Tools')
+    ['Break To Segments', 'Flatten Edges To Z', 'Make Faces'].each do |name|
+      toolbar.add_item(UI::Command.new(name))
+    end
+    ORAMBO::FaceTools::Toolbar.instance_variable_set(:@toolbar, toolbar)
+    ORAMBO::FaceTools::Diagnostics.instance_variable_set(:@hot_commands_registered, false)
+
+    ORAMBO::FaceTools::Diagnostics.register_hot_commands
+    ORAMBO::FaceTools::Diagnostics.register_hot_commands
+
+    assert_equal ['Break To Segments', 'Flatten Edges To Z', 'Make Faces', 'Select Open Ends', 'Highlight Gaps'],
+                 toolbar.items.map(&:name)
   end
 
   def test_updater_schedules_one_delayed_non_repeating_check
