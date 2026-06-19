@@ -73,6 +73,13 @@ module ORAMBO
         count
       end
 
+      def entities_for_parent(parent, model)
+        return model.active_entities if parent.equal?(model)
+        return parent.entities if parent.respond_to?(:entities)
+
+        raise ArgumentError, "Не удалось определить Sketchup::Entities для #{parent.class}."
+      end
+
       def collect_edge_contexts(model, selection, include_hidden: false, make_unique: false, deep: true, warnings: [])
         contexts = {}
         base = active_context_transform(model)
@@ -81,8 +88,9 @@ module ORAMBO
             if entity.hidden? && !include_hidden
               warnings << 'Скрытое ребро пропущено.'
             else
-              key = entity.parent.object_id
-              record = (contexts[key] ||= { entities: entity.parent, edges: [], transform: transform, container: container })
+              entities = entities_for_parent(entity.parent, model)
+              key = entities.object_id
+              record = (contexts[key] ||= { entities: entities, edges: [], transform: transform, container: container })
               record[:edges] << entity
             end
           elsif container?(entity) && deep

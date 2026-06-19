@@ -32,4 +32,25 @@ class UtilsTest < Minitest::Test
     container = Struct.new(:hidden?, :definition).new(false, definition)
     assert U.contains_hidden_geometry?(container)
   end
+
+  def test_entities_for_parent_uses_active_entities_for_model
+    active_entities = Object.new
+    model = Struct.new(:active_entities).new(active_entities)
+
+    assert_same active_entities, U.entities_for_parent(model, model)
+  end
+
+  def test_entities_for_parent_uses_definition_entities
+    entities = Object.new
+    definition = Struct.new(:entities).new(entities)
+    model = Struct.new(:active_entities).new(Object.new)
+
+    assert_same entities, U.entities_for_parent(definition, model)
+  end
+
+  def test_entities_for_parent_rejects_unknown_parent
+    model = Struct.new(:active_entities).new(Object.new)
+
+    assert_raises(ArgumentError) { U.entities_for_parent(Object.new, model) }
+  end
 end
