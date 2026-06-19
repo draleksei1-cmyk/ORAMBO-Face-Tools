@@ -12,7 +12,8 @@ module ORAMBO
         locked_skipped: 'Заблокированных объектов пропущено', micro_edges: 'Микрорёбер найдено',
         micro_edges_removed: 'Микрорёбер удалено', groups_exploded: 'Взорвано групп',
         components_exploded: 'Взорвано компонентов', components_unique: 'Компонентов сделано уникальными',
-        open_ends: 'Свободных концов найдено', final_edges: 'Итоговых рёбер'
+        open_ends: 'Свободных концов найдено', gap_pairs: 'Близких зазоров найдено',
+        unpaired_ends: 'Непарных свободных концов', final_edges: 'Итоговых рёбер'
       }.freeze
 
       attr_reader :warnings, :title
