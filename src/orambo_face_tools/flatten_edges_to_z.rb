@@ -96,6 +96,17 @@ module ORAMBO
         Progress.finish if defined?(Progress)
       end
 
+      def move_vertices(entities, vertices, vectors)
+        unless entities.respond_to?(:transform_by_vectors)
+          raise ArgumentError, 'Контекст Flatten не содержит Sketchup::Entities.'
+        end
+        unless vertices.length == vectors.length
+          raise ArgumentError, 'Количество вершин и векторов перемещения не совпадает.'
+        end
+
+        entities.transform_by_vectors(vertices, vectors) unless vertices.empty?
+      end
+
       def flatten_context(context, target_z, precision, report)
         transform = context[:transform]
         vertices = unique_vertices(context[:edges].map(&:vertices))
@@ -115,10 +126,7 @@ module ORAMBO
         rescue StandardError => error
           report.warn("Вершина пропущена: #{error.message}")
         end
-        unless context[:entities].respond_to?(:transform_by_vectors)
-          raise 'SketchUp не поддерживает безопасное перемещение вершин через transform_by_vectors.'
-        end
-        context[:entities].transform_by_vectors(movable, vectors) unless movable.empty?
+        move_vertices(context[:entities], movable, vectors)
         report.increment(:vertices_moved, movable.length)
         report.increment(:edges_processed, context[:edges].length)
       end
