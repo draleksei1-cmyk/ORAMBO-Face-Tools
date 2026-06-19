@@ -146,11 +146,15 @@ module ORAMBO
         end
       end
 
-      def reload_installed_files(extension_root, entries, loader: nil)
+      def reload_installed_files(extension_root, entries, loader: nil, hot_registrar: nil)
         load_file = loader || ->(path) { load(path) }
         reloadable_paths(entries).each do |relative|
           load_file.call(File.join(extension_root, relative))
         end
+        registrar = hot_registrar || lambda do
+          ORAMBO::FaceTools::Diagnostics.register_hot_commands if ORAMBO::FaceTools.const_defined?(:Diagnostics)
+        end
+        registrar.call
         true
       rescue LoadError, SyntaxError, StandardError => error
         log_error('Горячая перезагрузка не завершена; требуется перезапуск SketchUp.', error)
@@ -295,7 +299,7 @@ module ORAMBO
           notify_result('Обновление установлено. Перезапустите SketchUp для применения изменений интерфейса.')
         else
           if reload_installed_files(root, manifest['files'])
-            notify_result("Обновление #{manifest['version']} применено без перезапуска SketchUp.")
+            notify_result("обновление #{manifest['version']} успешно. Применено без перезапуска SketchUp.")
           else
             notify_result('Файлы обновлены, но горячая перезагрузка не завершена. Перезапустите SketchUp.')
           end
@@ -307,6 +311,7 @@ module ORAMBO
       end
 
       def notify_result(message)
+        status_message(message)
         if defined?(UI::Notification) && ORAMBO::FaceTools.const_defined?(:EXTENSION)
           notification = UI::Notification.new(ORAMBO::FaceTools::EXTENSION, message)
           notification.show
@@ -324,7 +329,14 @@ module ORAMBO
 
       def update_error(message, manual, error = nil)
         log_error(message, error)
+        status_message("ошибка обновления — #{message}")
         UI.messagebox("ORAMBO Face Tools\n\n#{message}") if manual
+      end
+
+      def status_message(message)
+        Sketchup.status_text = "ORAMBO Face Tools: #{message}" if defined?(Sketchup) && Sketchup.respond_to?(:status_text=)
+      rescue StandardError => error
+        log_error('Не удалось обновить строку состояния SketchUp.', error)
       end
 
       def log_error(message, error = nil)

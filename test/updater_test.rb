@@ -7,6 +7,16 @@ require 'json'
 require 'tmpdir'
 require_relative '../src/orambo_face_tools/updater'
 
+module Sketchup
+  class << self
+    attr_accessor :status_text_value
+
+    def status_text=(value)
+      self.status_text_value = value
+    end
+  end
+end
+
 class UpdaterTest < Minitest::Test
   U = ORAMBO::FaceTools::Updater
 
@@ -94,12 +104,29 @@ class UpdaterTest < Minitest::Test
       orambo_face_tools/main.rb
       orambo_face_tools/toolbar.rb
       orambo_face_tools/make_faces.rb
+      orambo_face_tools/diagnostics.rb
       orambo_face_tools/utils.rb
       orambo_face_tools/updater.rb
       orambo_face_tools/icons/make_faces_16.png
     ].map { |path| { 'path' => path } }
-    assert_equal %w[orambo_face_tools/utils.rb orambo_face_tools/make_faces.rb orambo_face_tools/updater.rb],
+    assert_equal %w[orambo_face_tools/utils.rb orambo_face_tools/diagnostics.rb orambo_face_tools/make_faces.rb orambo_face_tools/updater.rb],
                  U.reloadable_paths(entries)
+  end
+
+  def test_reload_calls_hot_command_registrar_once
+    calls = 0
+    registrar = -> { calls += 1 }
+
+    assert U.reload_installed_files('C:/plugin-root', [], loader: ->(_path) {}, hot_registrar: registrar)
+    assert_equal 1, calls
+  end
+
+  def test_status_message_writes_visible_sketchup_text
+    Sketchup.status_text_value = nil
+
+    U.status_message('обновление 0.1.2 успешно')
+
+    assert_equal 'ORAMBO Face Tools: обновление 0.1.2 успешно', Sketchup.status_text_value
   end
 
   def test_reload_failure_returns_false_instead_of_claiming_update_failed
